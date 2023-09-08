@@ -1,4 +1,5 @@
 card =[8, 8, 6, 6, 6, 6, 6, 6, 3, 2, 2, 2, 0, 0, 0]
+
 def locate_card(cards, query):
     lo, hi =0, len(cards) - 1
     
