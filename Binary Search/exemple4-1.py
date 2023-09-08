@@ -1,5 +1,5 @@
-cards = [8, 8, 6, 6, 6, 6, 6, 6, 3, 2, 2, 2, 0, 0, 0]
-query =6
+cards = [10, 9, 8, 6, 5, 3, 1, 0,0]
+query =8
 
 def test_location(cards, mid, query) :
     mid_number = cards[mid]
