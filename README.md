@@ -5,5 +5,6 @@ In this course im learning EAD using python
 
 ## 1 Linear Search exemple
 ## 2 Binary search exemple 
-## 3 Finally explanation about binary and lenear search
+## 4 Linked List
+
 
