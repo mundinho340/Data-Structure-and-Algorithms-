@@ -1,0 +1,76 @@
+
+(Ubuntu nao mostra senha, e nao esqueca desse comando sempre que abrir o terminal, mas tome cuidado com ele ^_^)
+
+-> [sudo apt update]
+
+#Nao faca upgrade e nem atualize seu ubuntu NUNCA!
+
+		< Intale google chrome >
+
+-> Depois do update digite os seguintes comandos:
+-> [wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb]
+-> [sudo apt install ./google-chrome-stable_current_amd64.deb]
+
+(Se nao quiser usar chrome use o firefox que ja vem instalado) 
+
+
+		< Instale Java 8 >
+		
+-> [java -version]
+
+(siga o comando que o terminal sugerir)
+#Escolha a versao 8
+(Em seguida execute esses comandos)
+
+-> [sudo add-apt-repository ppa:openjdk-r/ppa]
+-> [sudo apt-get update]
+-> [sudo apt-get install openjdk-8-jdk]
+
+		< Instale Maven 3.6.8 >
+		
+-> [mvn -version]
+(Siga o comando que o terminal sugerir)
+
+
+		<Instale Tomcat>
+-> [cd /opt/] 
+-> {wget https://mirrors.sonic.net/apache/tomcat/tomcat-9/v9.0.68/bin/apache-tomcat-9.0.68.tar.gz}
+
+(se nao baixar cole esse link no chrome e procure a versao mais recente do tomcat9: https://mirrors.sonic.net/apache/tomcat/tomcat-9/)
+#Entre na pasta /bin e procure a versao .tar.gz!
+ 
+-> {tar -xvf apache-tomcat-9.0.68.tar.gz}
+
+(Caso seja uma versao diferente nao esqueca alterar numero para a versao atualizada)
+
+-> {mv apache-tomcat-9.0.68 tomcat9}
+-> [nano ~/.bashrc]
+-> Cole: export CATALINA_HOME=/opt/tomcat9, pressione crtl x, depois clique ENTER
+-> [source ~/.bashrc]
+
+		< Instale Mysql 5.5 ou 5.6 >
+
+-> [sudo rm /var/lib/mysql/ -R]
+-> [sudo rm /etc/mysql/ -R]
+-> [sudo apt-get autoremove mysql* --purge]
+-> [sudo apt-get remove apparmor]
+-> [sudo groupadd mysql]
+-> [sudo useradd -g mysql mysql]
+-> [cd /usr/local]	
+-> [wget https://dev.mysql.com/get/Downloads/MySQL-5.5/mysql-5.5.56-linux-glibc2.5-x86_64.tar.gz]
+-> [sudo tar -xvzf mysql-5.5.56-linux-glibc2.5-x86_64.tar.gz]
+-> [sudo mv mysql-5.5.56-linux-glibc2.5-x86_64 mysql] 
+-> [cd mysql && sudo chown -R mysql:mysql *]
+-> [sudo apt-get install libaio1]
+-> [sudo apt-get install ia32-libs]
+-> [sudo scripts/mysql_install_db --user=mysql]
+-> [cd ../ && sudo chown -R root .]
+-> [cd mysql/ && sudo chown -R mysql data]
+-> [sudo cp support-files/my-medium.cnf /etc/my.cnf]
+-> [sudo bin/mysqld_safe --user=mysql && sudo cp support-files/mysql.server /etc/init.d/mysql.server]
+-> [sudo bin/mysqladmin -uroot password ('Escreva sua password aqui')] #Apage as parenteses
+-> [sudo ln -s /usr/local/mysql/bin/mysql /usr/local/bin/mysql]
+-> [sudo /etc/init.d/mysql.server start]
+-> [sudo /etc/init.d/mysql.server status]
+-> [sudo update-rc.d -f mysql.server defaults]
+-> [sudo service start mysql -u root -p]
