@@ -1,0 +1,221 @@
+Como se definem os casos?
+Muitas vezes a quantidade de instruções q que um algoritmo executa depende do formato dos dados da entrada n. Isso significa que, de acordo com a forma como os dados n são submetidos na entrada, o algoritmo pode executar ou deixar de executar algumas instruções.
+
+Tomemos como exemplo o algoritmo findMax(), uma função que recebe um array como parâmetro e retorna o maior valor contido neste array:
+
+public static int findMax(int[] n){
+
+     int max = n[0];
+
+     for(int i=1; i<n.length; i++){
+
+          if(n[i] > max){
+
+               max = n[i];
+
+          }
+
+     }
+
+     return max;
+
+}
+
+Observe na linha 4 que a declaração condicional if (dentro de uma estrutura de repetição) cria possibilidades de executar ou deixar de executar a instrução da linha 5, a depender da entrada n.
+
+if(n[i] > max){
+
+É geralmente nesses trechos condicionais que acontecem as definições dos casos na análise de algoritmos.
+
+Se, em todas as repetições, as comparações da linha 4 retornarem verdadeiro, fazendo o comando da linha 5 sempre ser executado, tem-se o pior caso, pois a quantidade máxima de instruções será executada e o algoritmo executará mais devagar.
+
+if(n[i] > max){ // sempre sendo verdadeiro
+
+     max = n[i]; // sempre será executada
+
+}
+
+Por outro lado, se, em todas as repetições, as comparações da linha 4 retornarem falso, fazendo com que o comando da linha 5 nunca seja executado, tem-se o melhor caso, pois a quantidade mínima de instruções será executada e o algoritmo executará mais rápido.
+
+if(n[i] > max){ // sempre sendo falso
+
+     max = n[i]; // nunca será executada
+
+}
+
+Desta forma, tem-se a definição do melhor e pior caso na análise de algoritmos.
+
+A dica é: se existir uma estrutura condicional (if-else) dentro de uma estrutura de repetição, provavelmente a execução do algoritmo irá gerar duas funções de complexidade: T(n) do melhor caso e T(n) do pior caso.
+
+E o "caso médio"?
+O caso médio é uma incógnita para muitos programadores e cientistas da computação. Ele representa uma estimativa de como o algoritmo irá se comportar “em média”. Para a maior parte das situações, a análise do caso médio não é evidente (Cormen et al., 2009) e requer técnicas de análise probabilística e algoritmos aleatorizados.
+
+Tais assuntos são mais aprofundados no campo da matemática e estão fora do escopo do nosso objetivo de ensino por enquanto. Por isso, não nos aprofundaremos na definição do caso médio neste artigo. Até porque ele não faz muita diferença em uma abordagem introdutória sobre análise e projeto de algoritmos.
+
+Análise do algoritmo findMax()
+Vamos agora, de forma detalhada, realizar a análise do algoritmo findMax() e ver a definição do melhor e pior caso.
+
+public static int findMax(int[] n){
+
+     int max = n[0];
+
+     for(int i=1; i<n.length; i++){
+
+          if(n[i] > max){
+
+               max = n[i];
+
+          }
+
+     }
+
+     return max;
+
+}
+
+Análise do "melhor caso"
+A inicialização da variável “int max = n[0]” é uma instrução que é executada uma única vez;
+
+int max = n[0]; // 1 vez
+
+a inicialização “int i=1” é uma instrução que é executada uma única vez;
+
+for(int i=1; i<n.length; i++){ // 1 vez
+
+a quantidade de incrementos “i++” em um um comando for é igual à quantidade de repetições que ele executa, neste caso, n-1 vezes (n-1 pelo fato do iterador i começar da segunda posição do array, do índice 1);
+
+for(int i=1; i<n.length; i++){ // n-1 vezes
+
+a quantidade de execução da comparação “i<n.length” é igual à quantidade de execuções do incremento “i++” mais 1 (esse 1 se refere à comparação que abandona o laço), totalizando n vezes;
+
+for(int i=1; i<n.length; i++){ // n vezes
+
+a quantidade de execução do condicional “if(n[i] > max)” é igual à quantidade de repetições do for em que ele está contido, neste caso, n-1 vezes. No melhor caso o condicional sempre será falso.
+
+if(n[i] > max){ // n-1 vezes e sempre será falso
+
+no melhor caso, o condicional da linha 4 sempre será falso e, portanto, a instrução “max=n[i]” da linha 5 nunca será executada.
+
+max = n[i]; // nunca será executada
+
+por fim, a instrução de retorno da função na linha 8 será executada apena uma única vez.
+
+return max; // 1 vez
+
+Após contabilizadas as instruções do algoritmo no melhor caso, deve-se fazer o somatório de todas as execuções. Pela definição matemática este algoritmo possui:
+
+Q = { “int max=n[0]“, “int i=1“, “i<n.length“, “i++“, “if(n[i]>max)“, “max=n[i]“, “return max“} // as instruções
+f(“int max=n[0]“) = 1 // quantidade executada pela 1ª instrução
+f(“int i=1“) = 1 // quantidade executada pela 2ª instrução
+f(“i<n.length“) = n // quantidade executada pela 3ª instrução
+f(“i++“) = n-1 // quantidade executada pela 4ª instrução
+f(“if(n[i]>max)“) = n-1 // quantidade executada pela 5ª instrução
+f(“max=n[i]“) = 0 // quantidade executada pela 6ª instrução
+f(“return max“) = 1 // quantidade executada pela 7ª instrução
+∑q∊Q f(q) = 1+1+n+(n-1)+(n-1)+1 = 3n+1 // custo da complexidade de tempo
+Desta forma, pode-se dizer que a complexidade de tempo do algoritmo findMax() no melhor caso é T(n)=3n+1.
+
+Análise do "pior caso"
+A inicialização da variável “int max = n[0]” é uma instrução que é executada uma única vez;
+
+int max = n[0]; // 1 vez
+
+a inicialização “int i=1” é uma instrução que é executada uma única vez;
+
+for(int i=1; i<n.length; i++){ // 1 vez
+
+a quantidade de incrementos “i++” em um um comando for é igual à quantidade de repetições que ele executa, neste caso, n-1 vezes (n-1 pelo fato do iterador i começar da segunda posição do array, do índice 1);
+
+for(int i=1; i<n.length; i++){ // n-1 vezes
+
+a quantidade de execução da comparação “i<n.length” é igual à quantidade de execuções do incremento “i++” mais 1 (esse 1 se refere à comparação que abandona o laço), totalizando n vezes;
+
+for(int i=1; i<n.length; i++){ // n vezes
+
+a quantidade de execução do condicional “if(n[i] > max)” é igual à quantidade de repetições do for em que ele está contido, neste caso, n-1 vezes. No pior caso o condicional sempre será verdadeiro.
+
+if(n[i] > max){ // n-1 vezes e sempre será verdadeiro
+
+no pior caso, o condicional da linha 4 sempre será verdadeiro e, portanto, a instrução “max=n[i]” da linha 5 será executada n-1 vezes.
+
+max = n[i]; // n-1 vezes
+
+por fim, a instrução de retorno da função na linha 8 será executada apena uma única vez.
+
+return max; // 1 vez
+
+Após contabilizadas as instruções do algoritmo no pior caso, deve-se fazer o somatório de todas as execuções. Pela definição matemática este algoritmo possui:
+
+Q = { “int max=n[0]“, “int i=1“, “i<n.length“, “i++“, “if(n[i]>max)“, “max=n[i]“, “return max“} // as instruções
+f(“int max=n[0]“) = 1 // quantidade executada pela 1ª instrução
+f(“int i=1“) = 1 // quantidade executada pela 2ª instrução
+f(“i<n.length“) = n // quantidade executada pela 3ª instrução
+f(“i++“) = n-1 // quantidade executada pela 4ª instrução
+f(“if(n[i]>max)“) = n-1 // quantidade executada pela 5ª instrução
+f(“max=n[i]“) = n-1 // quantidade executada pela 6ª instrução
+f(“return max“) = 1 // quantidade executada pela 7ª instrução
+∑q∊Q f(q) = 1+1+n+(n-1)+(n-1)+(n-1)+1 = 4n // custo da complexidade de tempo
+Desta forma, pode-se dizer que a complexidade de tempo do algoritmo findMax() no pior caso é T(n)=4n.
+
+Análise gráfica do melhor e pior caso
+Vamos analisar a evolução da quantidade de instruções executadas em função do tamanho da entrada n para o melhor caso e o pior caso. Veja o gráfico abaixo que ilustra os resultados para T(n)=3n+1 e T(n)=4n. É possível observar como o desempenho do algoritmo se comporta em ambos os casos.
+casos_01a
+Ambas são funções lineares e apresentam comportamento de crescimento linear, mas é possível observar que o pior caso tenderá a executar mais instruções para um determinado valor de entrada n.
+
+O papel do "pior caso"
+Pela terminologia da palavra, o termo “melhor caso” passa uma credibilidade de algo importante a ser considerado. Contudo, ele não é a estrela do show. Em análise de algoritmos, o que realmente importa é a análise do pior caso. O melhor caso reflete apenas a melhor das situações na qual um algoritmo poderia ser executado e, por isso mesmo, não é algo muito importante.
+
+Em situações reais de execução, nada pode ser garantido sobre o desempenho de um algoritmo, uma vez que nunca se sabe quais tipos de dados o algoritmo irá processar. Por isso, o pior caso estabelece um limite superior de tempo de execução. O pior caso sempre garante que o desempenho do algoritmo nunca será pior do que ele (nunca demorará mais do que aquilo que foi calculado). Isso nos dá uma garantia do que esperar do desempenho do algoritmo na pior das situações.
+
+Exercícios
+Para demonstrar que você compreendeu bem o técnica de “análise por contagem de instruções” e a “definição matemática formal” da complexidade de tempo de um algoritmo, resolva os exercícios propostos:
+
+Exercício A
+Utilizando a técnica da contagem de instruções, encontre as fórmulas de complexidade de tempo T(n) do melhor e pior caso para o algoritmo de ordenação genérica.
+
+public static void sort(int[ ] n){
+
+     for (int i=0; i<n.length-1; i++) {
+
+          for (int j=0; j<n.length-1; j++) {
+
+               if (n[j] > n[j+1]) {
+
+                    int aux = n[j+1];
+
+                    n[j+1] = n[j];
+
+                    n[j] = aux;
+
+               }
+
+          }
+
+     }
+
+}
+
+Exercício B
+Utilizando a técnica da contagem de instruções, encontre as fórmulas de complexidade de tempo T(n) do melhor e pior caso para o algoritmo Bubblesort.
+
+public static void bublesort(int[ ] n){
+
+     for (int i=0; i<n.length-1; i++) {
+
+          for (int j=0; j<n.length-1-i; j++) {
+
+               if (n[j] > n[j+1]) {
+
+                    int aux = n[j+1];
+
+                    n[j+1] = n[j];
+
+                    n[j] = aux;
+
+               }
+
+          }
+
+     }
+
+}
