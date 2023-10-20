@@ -1,0 +1,29 @@
+Análise por contagem de instruções
+Para encontrar a complexidade de tempo de um algoritmo por meio do método analítico, basta contar, linha por linha, a quantidade de vezes que cada uma das instruções é executada.
+
+Abaixo segue um código de um programa simples que iremos utilizar como exemplo para começar a explicar a técnica analítica da contagem de instruções.
+
+Scanner sc = new Scanner(System.in); // 1 vez
+
+int idade; // 1 vez
+
+System.out.println("Digite a sua idade:"); // 1 vez
+
+idade = sc.nextInt(); // 1 vez
+
+if (idade >= 18) // 1 vez
+
+     System.out.println("Maior de idade:"); // 1 vez
+
+else
+
+     System.out.println("Menor de idade:"); // 1 vez
+
+Após realizada a contagem de instruções do código acima, observamos que o algoritmo realiza um total de 6 instruções (o if-else são mutuamente exclusivos: ou executa o if ou executa o else).
+
+Desta forma, dizemos que T(n)=6 é a fórmula de complexidade de tempo desse algoritmo.
+
+Essa forma de quantificação das instruções proposta pelo modelo RAM permite comparar vários algoritmos uns com os outros e afirmar de maneira mais precisa qual é o mais rápido.
+
+Independente da velocidade dos computadores nos quais são executados, um algoritmo que executa uma menor quantidade de instruções sempre apresentará melhor desempenho para grandes volumes de dados processados.
+
