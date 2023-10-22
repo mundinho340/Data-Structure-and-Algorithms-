@@ -1,0 +1,34 @@
+O método analítico para a análise de algoritmos
+O método analítico é uma maneira mais assertiva para medir a complexidade de tempo dos algoritmos. Ele não tem o objetivo de calcular o tempo de execução em segundos, minutos ou alguma outra representação real de tempo. Ele visa encontrar uma expressão matemática para traduzir o desempenho em quantidade de instruções. É uma abordagem que busca contabilizar, no próprio algoritmo, a quantidade de instruções que ele executa.
+
+Desta forma, consegue-se medir o desempenho do algoritmo de maneira totalmente independente de linguagens de programação, de compiladores, de ferramentas e de outros fatores físicos que possam invalidar a análise.
+
+Para tanto, o modelo RAM (Random Access Machine) é a estratégia utilizada para medir desempenho de maneira analítica. Ele realiza a contagem das instruções que um algoritmo executa e ignora todos os aspectos de velocidade de processamento, linguagem de programação ou qualquer outro tipo de otimização de hardware.
+
+No modelo RAM, cada operação (tais como, atribuições, comparações e inicializações) consome um custo computacional constante e único. Veja abaixo diversos exemplos de operações computacionais comumente encontrada nos algoritmos, todas com o mesmo custo computacional:
+
+Declaração e atribuição de variáveis
+int valor = 0; // um único custo computacional
+
+float sal = 2005.15; // um único custo computacional
+
+Incremento ou decremento de variáveis
+valor++; // um único custo computacional
+
+valor--; // um único custo computacional
+
+Operações matemáticas complexas
+valor*(4/Math.sqrt(9)); // um único custo computacional
+
+Acesso a elementos de arrays
+lista[i]; // um único custo computacional
+
+Operações lógicas
+if(valor > 10); // um único custo computacional
+
+if(valor==3 || valor==2); // um único custo computacional
+
+Operações de leitura e escrita
+System.out.println("Ola mundo!"); // um único custo computacional
+
+scanner.nextInt(); // um único custo computacional
