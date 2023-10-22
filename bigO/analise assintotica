@@ -1,0 +1,165 @@
+vVamos analisar as funções 
+�
+(
+�
+)
+=
+�
+(
+�
++
+5
+)
+t(n)=n(n+5) e 
+�
+(
+�
+)
+=
+10
+�
++
+10
+t(n)=10n+10 para determinar qual delas é mais eficiente em termos de crescimento assintótico.
+
+�
+(
+�
+)
+=
+�
+(
+�
++
+5
+)
+t(n)=n(n+5)
+
+Expandindo a expressão, obtemos 
+�
+(
+�
+)
+=
+�
+2
++
+5
+�
+t(n)=n 
+2
+ +5n.
+
+Termo Dominante: O termo dominante é 
+�
+2
+n 
+2
+ , pois à medida que 
+�
+n aumenta, 
+�
+2
+n 
+2
+  cresce muito mais rápido do que 
+5
+�
+5n.
+
+Complexidade Assintótica: A complexidade assintótica é 
+�
+(
+�
+2
+)
+O(n 
+2
+ ) ou, de forma mais precisa, 
+�
+(
+�
+2
++
+5
+�
+)
+O(n 
+2
+ +5n).
+
+�
+(
+�
+)
+=
+10
+�
++
+10
+t(n)=10n+10
+
+Termo Dominante: Neste caso, não há outros termos para considerar. O termo dominante é 
+10
+�
+10n.
+
+Complexidade Assintótica: A complexidade assintótica é 
+�
+(
+�
+)
+O(n).
+
+Comparando as complexidades assintóticas:
+
+Para grandes valores de 
+�
+n, a função 
+�
+(
+�
+)
+=
+�
+(
+�
++
+5
+)
+t(n)=n(n+5) cresce significativamente mais rápido do que 
+�
+(
+�
+)
+=
+10
+�
++
+10
+t(n)=10n+10.
+Portanto, em termos de eficiência assintótica, a função 
+�
+(
+�
+)
+=
+10
+�
++
+10
+t(n)=10n+10 é mais eficiente do que 
+�
+(
+�
+)
+=
+�
+(
+�
++
+5
+)
+t(n)=n(n+5) para valores grandes de 
+�
+n. Isso significa que, à medida que o tamanho do problema aumenta, o tempo de execução da segunda função cresce de forma mais lenta em comparação com a primeira
