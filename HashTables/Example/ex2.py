@@ -17,4 +17,5 @@ class HashTable:
                     break
                 else:
                     self.table[index].append((key, value))
+                    lsllsllsl
         
