@@ -17,4 +17,10 @@ class HashTable:
                     break
                 else:
                     self.table[index].append((key, value))
-        
+    
+    def get(self,key):
+        index = self.hash_function(key)
+        if self.table[index] is not None:
+            for existing_key ==key:
+                return existing_value
+        raise KeyError(f"Key '{key}' not found")
