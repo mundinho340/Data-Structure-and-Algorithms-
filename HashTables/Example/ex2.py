@@ -18,4 +18,4 @@ class HashTable:
                 else:
                     self.table[index].append((key, value))
                     lsllsllslllllllllll
-        
+        klskalkslaklsas
